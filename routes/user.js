@@ -16,11 +16,11 @@ router.get('/', async (req, res) => {
 // Create a new user
 router.post('/', async (req, res) => {
     try {
-        const { email, password, username, purchaseHistory, shippingAddress } = req.body;
+        const { email } = req.body;
         let user = await UserModel.findOne({ email });
         if (user) {
             return res.status(400).json({ message: 'User already exists' });
-          }
+        }
         const newUser = new UserModel({
             _id: new mongoose.Types.ObjectId(),
             ...req.body
